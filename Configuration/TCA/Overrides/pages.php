@@ -33,6 +33,9 @@ foreach (['title', 'description', 'tx_seo_titletag'] as $field) {
             'defaultUrl' => 'https://domain.tld/path',
         ],
     ];
+
+    /* Configure the wizard position for TYPO3 7 */
+    $GLOBALS['TCA']['pages']['columns'][$field]['config']['wizards']['_POSITION'] = 'bottom';
 }
 
 $GLOBALS['TCA']['pages_language_overlay']['columns']['description']['config']['wizards']['serp'] =
