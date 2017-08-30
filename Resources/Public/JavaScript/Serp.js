@@ -63,7 +63,7 @@ define(['jquery'], function($) {
 
 		$.each(fieldConfigs, function(key, name) {
 			if (name !== null) {
-				fields[key] = $('.formengine-field-item *[data-formengine-input-name*="[' + name + ']"]');
+				fields[key] = $('.t3js-formengine-field-item *[data-formengine-input-name*="[' + name + ']"]');
 				if (fields[key].prop('tagName') === 'INPUT') {
 					fields[key + '_initial'] = $('input[type=hidden][name*="[' + name + ']"]');
 				} else {
