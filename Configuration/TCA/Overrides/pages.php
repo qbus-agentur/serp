@@ -27,7 +27,9 @@ foreach (['title', 'description', 'tx_seo_titletag'] as $field) {
             'title' => 'title',
             'description' => 'description',
             'titleOverride' => 'tx_seo_titletag',
-            'titleSuffix' => ' – Site Name',
+            /* Use false to disable autodetection */
+            'titleSuffix' => '',
+            'titleSuffixSeparator' => ' – ',
             'defaultTitle' => 'No title',
             'defaultDescription' => 'No description',
             'defaultUrl' => 'https://domain.tld/path',

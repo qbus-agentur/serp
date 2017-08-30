@@ -51,8 +51,15 @@ define(['jquery'], function($) {
 			titleOverride: null,
 			titlePrefix: '',
 			titleSuffix: '',
+			titleSuffixSeparator: ' – ',
 			defaultUrl: '',
 		}, config);
+
+		var titleSuffix = '';
+
+		if (config.titleSuffix) {
+			titleSuffix = config.titleSuffixSeparator + config.titleSuffix;
+		}
 
 		var fieldConfigs = {
 			title: config.title,
@@ -79,7 +86,7 @@ define(['jquery'], function($) {
 
 			var title = config.defaultTitle;
 			if (fields['title' + suffix].val()) {
-				title = config.titlePrefix + fields['title' + suffix].val() + config.titleSuffix;
+				title = config.titlePrefix + fields['title' + suffix].val() + titleSuffix;
 			}
 			title = fields['titleOverride' + suffix].val() || title;
 

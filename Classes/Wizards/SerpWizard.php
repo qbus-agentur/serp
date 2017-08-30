@@ -19,15 +19,24 @@ class SerpWizard
     protected $pageRenderer;
 
     /**
+     * @var string
+     */
+    protected static $siteTitle = null;
+
+    /**
      * @param  array  $params
      * @param  object $ref
      * @return string
      */
     public function renderWizard($params, $ref)
     {
-        $config = $params['wConf']['params'];
         $this->loadCss();
         $this->loadJs();
+
+        $config = $params['wConf']['params'];
+        if (!isset($config['titleSuffix']) || $config['titleSuffix'] === '') {
+            $config['titleSuffix'] = $this->autodetectTitleSuffix($params);
+        }
 
         return '<div class="t3js-serp-wizard" data-config="' . htmlentities(json_encode($config), ENT_QUOTES, 'UTF-8') . '"></div>';
     }
@@ -66,5 +75,38 @@ class SerpWizard
         }
 
         return $this->pageRenderer;
+    }
+
+    protected function autodetectTitleSuffix($params)
+    {
+        if (self::$siteTitle !== null) {
+            return self::$siteTitle;
+        }
+
+        $pageId = 0;
+        if ($params['table'] === 'pages') {
+            $pageId = $params['uid'] || $params['pid'];
+        } else {
+            $pageId = $params['pid'];
+        }
+
+        if (!$pageId) {
+            return '';
+        }
+
+        $templateService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\TypoScript\TemplateService::class);
+        $templateService->tt_track = 0;
+        $templateService->forceTemplateParsing = 1;
+        $templateService->init();
+
+        $pageRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Page\PageRepository::class);
+        $rootline = $pageRepository->getRootLine($pageId);
+
+        $templateService->runThroughTemplates($rootline, 0);
+        $templateService->generateConfig();
+
+        self::$siteTitle = $templateService->setup['sitetitle'];
+
+        return self::$siteTitle;
     }
 }
