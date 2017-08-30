@@ -1,0 +1,84 @@
+.serpSnippet .snippetContainer {
+	display: block;
+	padding: 12px;
+	border: 1px solid #bbb;
+	margin: 12px 0;
+	background-color: #fff;
+}
+
+.serpSnippet .snippetContainer {
+	display: block;
+	max-width: 600px;
+}
+
+.serpSnippet .title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+.serpSnippet .title a {
+	display: block;
+	color: rgb(26, 13, 171);
+	//cursor: pointer;
+	pointer-events: none;
+	display: inline;
+	font-family: arial, sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	height: auto;
+	line-height: 21.600000381469727px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	text-align: left;
+	text-decoration: none solid rgb(26, 13, 171);
+	visibility: visible;
+	white-space: nowrap;
+	width: auto;
+	zoom: 1;
+}
+
+.serpSnippet .title a:hover {
+	text-decoration: underline;
+}
+
+.serpSnippet .url {
+	display: block;
+	color: rgb(0, 102, 33);
+	font-family: arial, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: normal;
+	height: auto;
+	line-height: 16px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	text-align: left;
+	visibility: visible;
+	white-space: nowrap;
+	width: auto;
+	zoom: 1;
+	height: 16px;
+}
+
+.serpSnippet .description {
+	display: block;
+	color: rgb(84, 84, 84);
+	font-family: arial, sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	height: auto;
+	line-height: 18.200000762939453px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	text-align: left;
+	visibility: visible;
+	width: auto;
+	word-wrap: break-word;
+	zoom: 1;
+	height: 36px;
+}

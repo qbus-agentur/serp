@@ -1,0 +1,55 @@
+{
+    "name": "qbus/serp",
+    "type": "typo3-cms-extension",
+    "description": "SERP preview in TYPO3 TCA forms",
+    "keywords": [
+        "TYPO3",
+        "extension",
+	"seo",
+	"serp"
+    ],
+    "authors": [
+        {
+            "name": "Benjamin Franzke",
+            "email": "bfr@qbus.de",
+            "role": "Developer"
+        }
+    ],
+    "license": "GPL-2.0+",
+    "require": {
+        "typo3/cms-core": "^8.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Qbus\\Serp\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Qbus\\Serp\\Tests\\": "Tests"
+        }
+    },
+    "replace": {
+        "serp": "self.version",
+        "typo3-ter/serp": "self.version"
+    },
+    "require-dev": {
+        "typo3/cms": "^8.7",
+        "typo3/testing-framework": "^1.0"
+    },
+    "config": {
+        "vendor-dir": ".build/vendor"
+    },
+    "extra": {
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".build/web"
+        },
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "mkdir -p .build/web/typo3conf/ext/ && ln -snf ../../../.. .build/web/typo3conf/ext/serp"
+    }
+}
