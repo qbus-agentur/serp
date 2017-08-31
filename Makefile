@@ -12,3 +12,8 @@ test-coverage: .build/vendor/autoload.php
 
 lint:
 	find . -name '*.php' '!' -path './.build/*' -exec php -l {} >/dev/null \;
+
+build-t3x-extension:
+	git archive -o "$${PWD##*/}_`git describe --tags`.zip" HEAD
+	@echo
+	@echo "$${PWD##*/}_`git describe --tags`.zip has been created."
