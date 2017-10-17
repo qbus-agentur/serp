@@ -58,7 +58,10 @@ class SerpWizard
         $cssFiles = [
             'Serp.css',
         ];
-        $baseUrl = ExtensionManagementUtility::extRelPath('serp') . 'Resources/Public/CSS/';
+        $baseUrl = 'EXT:serp/Resources/Public/CSS/';
+        if (version_compare(TYPO3_branch, '8.4', '<')) {
+            $baseUrl = ExtensionManagementUtility::extRelPath('serp') . 'Resources/Public/CSS/';
+        }
 
         foreach ($cssFiles as $cssFile) {
             $this->getPageRenderer()->addCssFile($baseUrl . $cssFile, 'stylesheet', 'all', '', $compress, false);
