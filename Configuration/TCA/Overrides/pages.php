@@ -46,3 +46,15 @@ $GLOBALS['TCA']['pages_language_overlay']['columns']['title']['config']['wizards
     $GLOBALS['TCA']['pages']['columns']['title']['config']['wizards']['serp'];
 //$GLOBALS['TCA']['pages_language_overlay']['columns']['tx_seo_titletag']['config']['wizards']['serp'] =
 //    $GLOBALS['TCA']['pages']['columns']['tx_seo_titletag']['config']['wizards']['serp'];
+
+if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('metaseo')) {
+    $GLOBALS['TCA']['pages']['columns']['title']['config']['wizards']['serp']['params']['titleOverride'] = 'tx_metaseo_pagetitle';
+    $GLOBALS['TCA']['pages']['columns']['description']['config']['wizards']['serp']['params']['titleOverride'] = 'tx_metaseo_pagetitle';
+
+    unset($GLOBALS['TCA']['pages']['columns']['tx_seo_titletag']);
+    $GLOBALS['TCA']['pages']['columns']['tx_metaseo_pagetitle']['config']['wizards']['serp'] =
+        $GLOBALS['TCA']['pages']['columns']['title']['config']['wizards']['serp'];
+
+    /* Configure the wizard position for TYPO3 7 */
+    $GLOBALS['TCA']['pages']['columns']['tx_metaseo_pagetitle']['config']['wizards']['_POSITION'] = 'bottom';
+}
