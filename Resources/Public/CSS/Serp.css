@@ -80,5 +80,5 @@
 	width: auto;
 	word-wrap: break-word;
 	zoom: 1;
-	height: 36px;
+	min-height: 36px;
 }
