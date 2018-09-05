@@ -46,7 +46,7 @@ class SerpWizard
      */
     protected function loadJs()
     {
-        $this->getPageRenderer()->loadRequireJsModule('TYPO3/CMS/Serp/Serp');
+        $this->getPageRenderer()->loadRequireJsModule('TYPO3/CMS/Serp/SerpV2');
     }
 
     /**

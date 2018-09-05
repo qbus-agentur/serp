@@ -8,7 +8,7 @@ define(['jquery'], function($) {
 			search: ""
 		}, options);
 
-		var DESC_LENGHT = 156;
+		var DESC_LENGHT = 320;
 
 		function truncate(text, maxLength) {
 			if (text.length > maxLength) {
