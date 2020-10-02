@@ -30,7 +30,6 @@
         }
     },
     "replace": {
-        "serp": "self.version",
         "typo3-ter/serp": "self.version"
     },
     "require-dev": {
