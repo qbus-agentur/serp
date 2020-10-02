@@ -21,7 +21,9 @@ if (!isset($GLOBALS['TCA']['pages']['columns']['tx_seo_titletag'])) {
 
 foreach (['title', 'description', 'tx_seo_titletag'] as $field) {
 
-    $GLOBALS['TCA']['pages']['columns'][$field]['config']['fieldWizard']['serp']['renderType'] = 'serpControl';
+    if (version_compare(TYPO3_branch, '9.5', '>=')) {
+        $GLOBALS['TCA']['pages']['columns'][$field]['config']['fieldWizard']['serp']['renderType'] = 'serpControl';
+    }
 
     $GLOBALS['TCA']['pages']['columns'][$field]['config']['wizards']['serp'] = [
         'type' => 'userFunc',
