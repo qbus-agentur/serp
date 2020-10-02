@@ -43,12 +43,14 @@ foreach (['title', 'description', 'tx_seo_titletag'] as $field) {
     $GLOBALS['TCA']['pages']['columns'][$field]['config']['wizards']['_POSITION'] = 'bottom';
 }
 
-$GLOBALS['TCA']['pages_language_overlay']['columns']['description']['config']['wizards']['serp'] =
-    $GLOBALS['TCA']['pages']['columns']['description']['config']['wizards']['serp'];
-$GLOBALS['TCA']['pages_language_overlay']['columns']['title']['config']['wizards']['serp'] =
-    $GLOBALS['TCA']['pages']['columns']['title']['config']['wizards']['serp'];
-//$GLOBALS['TCA']['pages_language_overlay']['columns']['tx_seo_titletag']['config']['wizards']['serp'] =
-//    $GLOBALS['TCA']['pages']['columns']['tx_seo_titletag']['config']['wizards']['serp'];
+if (isset($GLOBALS['TCA']['pages_language_overlay'])) {
+    $GLOBALS['TCA']['pages_language_overlay']['columns']['description']['config']['wizards']['serp'] =
+        $GLOBALS['TCA']['pages']['columns']['description']['config']['wizards']['serp'];
+    $GLOBALS['TCA']['pages_language_overlay']['columns']['title']['config']['wizards']['serp'] =
+        $GLOBALS['TCA']['pages']['columns']['title']['config']['wizards']['serp'];
+    //$GLOBALS['TCA']['pages_language_overlay']['columns']['tx_seo_titletag']['config']['wizards']['serp'] =
+    //    $GLOBALS['TCA']['pages']['columns']['tx_seo_titletag']['config']['wizards']['serp'];
+}
 
 if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('metaseo')) {
     $GLOBALS['TCA']['pages']['columns']['title']['config']['wizards']['serp']['params']['titleOverride'] = 'tx_metaseo_pagetitle';

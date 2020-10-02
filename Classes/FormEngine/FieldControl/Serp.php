@@ -3,6 +3,7 @@ namespace Qbus\Serp\FormEngine\FieldControl;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Form\AbstractNode;
+use TYPO3\CMS\Core\Utility\RootlineUtility;
 
 /**
  * Serp
@@ -50,15 +51,22 @@ class Serp extends AbstractNode
         $templateService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\TypoScript\TemplateService::class);
         $templateService->tt_track = 0;
         $templateService->forceTemplateParsing = 1;
-        $templateService->init();
 
-        $pageRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Page\PageRepository::class);
-        $rootline = $pageRepository->getRootLine($pageId);
+        $rootlineUtility = GeneralUtility::makeInstance(RootlineUtility::class, $pageId);
+        try {
+            $rootline = $rootlineUtility->get();
+        } catch (\Exception $ex) {
+             if ($ex->getCode() === 1343589451) {
+                $rootline = [];
+             } else {
+                throw $ex;
+            }
+        }
 
         $templateService->runThroughTemplates($rootline, 0);
         $templateService->generateConfig();
 
-        self::$siteTitle = $templateService->setup['sitetitle'];
+        self::$siteTitle = $templateService->setup['sitetitle'] ?? '';
 
         return self::$siteTitle;
     }
